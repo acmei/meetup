@@ -7,3 +7,5 @@
 ```
 npm install
 ```
+
+![A preview of the app](meetup-challenge-screenshot.png)
