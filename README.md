@@ -1,4 +1,4 @@
-## Getting Started
+## Meetup Coding Challenge
 
 #### Requirements
 - Node.js (v5.4.1)
