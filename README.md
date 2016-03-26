@@ -6,6 +6,7 @@
 #### Install dependencies
 ```
 npm install
+bower install
 ```
 
 ![A preview of the app](meetup-challenge-screenshot.png)
