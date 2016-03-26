@@ -2,9 +2,6 @@
   "name": "meetup",
   "version": "1.0.0",
   "description": "code challenge",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Anita Wang <acmei.wang@gmail.com>",
   "license": "ISC",
   "devDependencies": {

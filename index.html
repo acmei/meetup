@@ -2,16 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Anita's Meetup Coding Challenge</title>
-    <link rel="stylesheet" href="stylesheets/css/sassquatch.css">
-    <link rel="stylesheet" href="stylesheets/css/style.css">
+    <title>Meetup Coding Challenge</title>
+    <link rel="stylesheet" href="dist/sassquatch.css">
+    <link rel="stylesheet" href="dist/style.css">
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
     <script src="bower_components/jQuery/dist/jquery.min.js"></script>
+    <script src="src/main.js"></script>
   </head>
   <body>
-    <p class="align--center text--graphic">
-      This is some text
-      <i class="fa fa-star-o"></i>
-    </p>
+    <div class="search">
+      <h2 class="">Javascript Meetups</h2>
+      <input id="search-field" type=text placeholder="Search by zipcode" autocomplete="postal-code" autofocus/>
+      <a class="button button--primary">Search</a>
+    </div>
+    <section class="events">
+    </section>
   </body>
 </html>

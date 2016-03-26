@@ -1,0 +1,72 @@
+// Colors
+$background-color: rgba(243,246,249,1);
+$shadow-color: rgba(0,0,0,.25);
+$star-color: rgba(240,203,79,1);
+$font-stack: Helvetica, Arial, sans-serif;
+
+// Numbers
+$xsmall-space: 1rem;
+$small-space: 2rem;
+$max-width: 65%;
+$search-field-height: 35px;
+$search-field-width: 200px;
+$shadow-blur-radius: 20px;
+$card-height: 140px;
+$transition-time: 0.2s;
+
+// Base Styling
+
+html, body {
+  background-color: $background-color;
+  font-family: $font-stack;
+}
+
+// Search
+.search {
+  margin: 0 auto;
+  max-width: $max-width;
+  padding-top: $small-space;
+  padding-left: $small-space;
+
+  #search-field {
+    display: inline-block;
+    height: $search-field-height;
+    max-width: $search-field-width;
+  }
+}
+
+// Events
+.events {
+  border-top: none;
+  margin: $small-space auto;
+  max-width: $max-width;
+
+  .card {
+    min-height: $card-height;
+
+    &:hover {
+      box-shadow: 0 0 $shadow-blur-radius $shadow-color;
+      -webkit-transition: box-shadow $transition-time ease-in-out;
+      transition: box-shadow $transition-time ease-in-out;
+    }
+  }
+
+  // Favorite
+  .favorited {
+    .fa-star-o {
+      color: $star-color;
+    }
+  }
+
+  .card--event {
+    margin: $xsmall-space;
+
+    .spots-available {
+      font-style: italic;
+    }
+
+    .event-info {
+      padding-bottom: $xsmall-space;
+    }
+  }
+}

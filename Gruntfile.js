@@ -7,14 +7,14 @@ module.exports = function(grunt) {
           outputStyle: 'expanded'
         },
         files: {
-          "stylesheets/css/sassquatch.css": "bower_components/sassquatch2/sass/sassquatch.scss",
-          "stylesheets/css/style.css": "stylesheets/sass/style.scss"
+          "dist/sassquatch.css": "bower_components/sassquatch2/sass/sassquatch.scss",
+          "dist/style.css": "src/style.scss"
         }
       }
     },
     watch: {
       sass: {
-        files: 'stylesheets/sass/*.scss',
+        files: 'src/*.scss',
         tasks: ['sass']
       }
     }
