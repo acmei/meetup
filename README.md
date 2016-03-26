@@ -9,4 +9,7 @@ npm install
 bower install
 ```
 
-![A preview of the app](meetup-challenge-screenshot.png)
+#### Previewing the App
+Open up `index.html` in your browser.
+
+![A preview of the app](screenshot.png)
