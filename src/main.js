@@ -3,7 +3,7 @@ $(document).ready(function($) {
   API_KEY = '6752511f3291b2b182ee4d2ef312';
 
   var $eventsSection = $('.events');
-  var zipcode;
+  var zipcode = $('#search-field').val();
 
   function renderPage(zipcode) {
     $eventsSection.empty();
@@ -24,7 +24,7 @@ $(document).ready(function($) {
     }).done(function(data) {
       // loop through the results to display events
       $.each(data.results, function(index, event) {
-        renderEventsTemplate(index, event);
+        renderEventTemplate(index, event);
       });
     }).fail(function(jqXHR, textStatus, errorThrown) {
       alert(jqXHR.status + ': ' + 'Check your request url and try again.');
@@ -46,16 +46,16 @@ $(document).ready(function($) {
     // Searching
     $('#search-field').on('keyup', function(event) {
       if (event.keyCode === 13) {
-        renderPage($('#search-field').val());
+        renderPage(zipcode);
       }
     });
 
     $('.button--primary').on('click', function() {
-      renderPage($('#search-field').val());
+      renderPage(zipcode);
     })
   }
 
-  function renderEventsTemplate(index, event) {
+  function renderEventTemplate(index, event) {
     var eventName = event.name;
     var eventUrl = event.event_url;
     var eventTime = new Date(event.time);
