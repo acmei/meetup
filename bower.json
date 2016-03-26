@@ -1,0 +1,24 @@
+{
+  "name": "meetup",
+  "authors": [
+    "Anita Wang <acmei.wang@gmail.com>"
+  ],
+  "description": "coding challenge",
+  "main": "",
+  "moduleType": [],
+  "keywords": [
+    "meetup"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "sassquatch2": "^1.5.2",
+    "jQuery": "^2.2.2",
+    "font-awesome": "^4.5.0"
+  }
+}
