@@ -16,7 +16,7 @@ $(document).ready(function($) {
         'key': API_KEY,
         'page': 10,
         'zip': zipcode || '98101',
-        'topic': 'javascript',
+        'text': 'javascript',
         'radius': 15,
         'order': 'trending',
         'desc': true
@@ -38,10 +38,10 @@ $(document).ready(function($) {
       var $star = $(this).find(':first-child');
 
       $(this).toggleClass('favorited');
-      $star.addClass('animate--spin');
+      $star.addClass('animate--bounceInSubtle');
 
       setTimeout(function () {
-        $star.removeClass('animate--spin');
+        $star.removeClass('animate--bounceInSubtle');
       }, 300);
     });
 
