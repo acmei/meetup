@@ -1,10 +1,10 @@
-### Previewing the App
+## Previewing the App
 Open up `index.html` in your browser.
 
 ![A preview of the app](screenshot.png)
 
-### Files & Folders:
-- **index.html**: Web page to view application
+## Files & Folders:
+- **index.html**: web page to view application
 - **Bower files**: .bowerrc & bower.json used to incorporate meetup styleguide
 - **Gruntfile.js**: setup tasks to inject components, compile Sass, and watch for changes to src/*.scss files
 - **package.json**: development dependencies (Grunt, Bower)
@@ -15,7 +15,7 @@ Open up `index.html` in your browser.
   - *main.js*: main application JS file
   - *style.scss*: custom styling
 
-### Development Requirements
+## Development Requirements
 - Node.js (v5.4.1)
 - Bower (v1.7.7)
 
