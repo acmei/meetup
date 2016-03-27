@@ -4,7 +4,7 @@ module.exports = function(grunt) {
       dist: {
         options: {
           sourceMap: false,
-          outputStyle: 'expanded'
+          outputStyle: 'compressed'
         },
         files: {
           "dist/sassquatch.css": "bower_components/sassquatch2/sass/sassquatch.scss",
