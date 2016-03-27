@@ -6,7 +6,6 @@
 #### Install Dependencies
 ```
 npm install
-bower install
 ```
 
 #### Previewing the App
