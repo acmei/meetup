@@ -17,8 +17,6 @@
     "tests"
   ],
   "dependencies": {
-    "sassquatch2": "^1.5.2",
-    "jQuery": "^2.2.2",
-    "font-awesome": "^4.5.0"
+    "sassquatch2": "^1.5.2"
   }
 }
