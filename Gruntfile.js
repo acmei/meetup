@@ -15,8 +15,8 @@ module.exports = function(grunt) {
           outputStyle: 'compressed'
         },
         files: {
-          'dist/sassquatch.css': 'components/sassquatch2/sass/sassquatch.scss',
-          'dist/style.css': 'src/style.scss'
+          'dist/sassquatch.min.css': 'components/sassquatch2/sass/sassquatch.scss',
+          'dist/style.min.css': 'src/style.scss'
         }
       }
     },

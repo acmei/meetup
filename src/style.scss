@@ -5,27 +5,31 @@ $star-color: rgba(240,203,79,1);
 $font-stack: Helvetica, Arial, sans-serif;
 
 // Numbers
-$xsmall-space: 1rem;
-$small-space: 2rem;
+$xsmall-space: 0.45rem;
+$small-space: 1rem;
+$medium-space: 2rem;
 $search-field-height: 35px;
 $search-field-width: 200px;
 $shadow-blur-radius: 20px;
 $card-height: 140px;
 $transition-time: 0.2s;
+$xsmall-screen-width: 90%;
+$small-screen-width: 75%;
+$medium-and-large-screen-width: 55%;
 
 // Make it responsive!
 @mixin media-query() {
   @media only screen and (min-width : 480px) {
-    max-width: 90%;
+    max-width: $xsmall-screen-width;
   }
   @media only screen and (min-width: 768px) {
-    max-width: 75%;
+    max-width: $small-screen-width;
   }
   @media only screen and (min-width: 992px) {
-    max-width: 55%;
+    max-width: $medium-and-large-screen-width;
   }
   @media only screen and (min-width: 1400px) {
-    max-width: 55%;
+    max-width: $medium-and-large-screen-width;
   }
 }
 
@@ -39,12 +43,13 @@ html, body {
 .search {
   @include media-query
   margin: 0 auto;
-  padding-top: $small-space;
-  padding-left: $small-space;
+  padding-top: $medium-space;
+  padding-left: $medium-space;
 
   #search-field {
     display: inline-block;
     height: $search-field-height;
+    margin-right: $xsmall-space;
     max-width: $search-field-width;
   }
 }
@@ -53,7 +58,7 @@ html, body {
 .events {
   @include media-query
   border-top: none;
-  margin: $small-space auto;
+  margin: $medium-space auto;
 
   .card {
     min-height: $card-height;
@@ -79,14 +84,14 @@ html, body {
   }
 
   .card--event {
-    margin: $xsmall-space;
+    margin: $small-space;
 
     .spots-available {
       font-style: italic;
     }
 
     .event-info {
-      padding-bottom: $xsmall-space;
+      padding-bottom: $small-space;
     }
   }
 }

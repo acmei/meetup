@@ -1,11 +1,30 @@
 $(document).ready(function($) {
   // key provided in coding challenge doc
-  API_KEY = '6752511f3291b2b182ee4d2ef312';
+  var API_KEY = '6752511f3291b2b182ee4d2ef312';
 
+  var $searchSection = $('.search');
   var $eventsSection = $('.events');
   var zipcode;
 
-  function renderPage(zipcode) {
+  function renderSearch() {
+    var title = $('<h2>').text('JavaScript Meetups');
+
+    var inputField = $('<input>', {
+      'id': 'search-field',
+      'type': 'text',
+      'placeholder': 'Search by ZIP code',
+      'autocomplete': 'postal-code',
+      'autofocus': true
+    });
+
+    var searchButton = $('<button>', {
+      'class': 'button button--primary'
+    }).text('Search');
+
+    return $searchSection.append([title, inputField, searchButton]);
+  }
+
+  function renderEvents(zipcode) {
     $eventsSection.empty();
 
     $.ajax({
@@ -48,12 +67,12 @@ $(document).ready(function($) {
     // Searching
     $('#search-field').on('keyup', function(event) {
       if (event.keyCode === 13) {
-        renderPage($('#search-field').val());
+        renderEvents($('#search-field').val());
       }
     });
 
     $('.button--primary').on('click', function() {
-      renderPage($('#search-field').val());
+      renderEvents($('#search-field').val());
     })
   }
 
@@ -171,7 +190,8 @@ $(document).ready(function($) {
     }
   }
 
-  renderPage();
+  renderSearch();
+  renderEvents();
   attachEventListeners();
 });
 
