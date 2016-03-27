@@ -3,7 +3,7 @@ Open up `index.html` in your browser.
 
 ![A preview of the app](screenshot.png)
 
-## Files & Folders:
+## Files & Folders
 - **index.html**: web page to view application
 - **Bower files**: .bowerrc & bower.json used to incorporate meetup styleguide
 - **Gruntfile.js**: setup tasks to inject components, compile Sass, and watch for changes to src/*.scss files
