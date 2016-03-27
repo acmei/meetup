@@ -29,9 +29,9 @@ grunt sass
 - **Gruntfile.js**: setup tasks to inject components, compile Sass, and watch for changes to src/*.scss files
 - **package.json**: development dependencies (Grunt, Bower)
 - **dist**
-  - style.min.css: compiled from style.scss and minified
-  - sassquatch.min.css: compiled & minified meetup styles
+  - *style.min.css*: compiled from style.scss and minified
+  - *sassquatch.min.css*: compiled & minified meetup styles
 - **src**
-  - main.js: main application JS file
-  - style.scss
+  - *main.js*: main application JS file
+  - *style.scss*: custom styling
 
