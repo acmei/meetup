@@ -3,7 +3,6 @@
 #### Requirements
 - Node.js (v5.4.1)
 - Bower (v1.7.7)
-- npm (v3.5.3)
 
 #### Install dependencies
 ```
