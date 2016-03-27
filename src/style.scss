@@ -51,8 +51,14 @@ html, body {
   }
 
   // Favorite
+  .fa-star {
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: $star-color;
+  }
+
   .favorited {
-    .fa-star-o {
+    .fa-star {
       color: $star-color;
     }
   }

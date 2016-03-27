@@ -35,11 +35,13 @@ $(document).ready(function($) {
     // Favoriting
     $eventsSection.on('click', '.favorite', function() {
       event.preventDefault();
+      var $star = $(this).find(':first-child');
+
       $(this).toggleClass('favorited');
-      $('.fa-star-o').addClass('animate--spin');
+      $star.addClass('animate--spin');
 
       setTimeout(function () {
-        $('.fa-star-o').removeClass('animate--spin');
+        $star.removeClass('animate--spin');
       }, 300);
     });
 
@@ -84,7 +86,7 @@ $(document).ready(function($) {
       'class': 'row-item row-item--shrink align--right'
     }).
       append($('<p>', {'class': 'text--caption favorite'}).
-        html('Favorite <i class="fa fa-star-o"></i>'));
+        html('Favorite <i class="fa fa-star"></i>'));
 
     // card header which includes favorite and date display
     var cardHeader = $('<div>', {
