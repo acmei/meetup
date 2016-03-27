@@ -15,10 +15,6 @@ bower install
 
 #### Compile Sass
 ```shell
-grunt sass
-
-# or, if watching for changes to src/*.scss
-
+# This will automatically watch for changes to 'src/style.scss'
 grunt
 ```
-

@@ -4,17 +4,15 @@
     "Anita Wang <acmei.wang@gmail.com>"
   ],
   "description": "coding challenge",
-  "main": "",
-  "moduleType": [],
+  "main": [
+    "./components/sassquatch2/sass/sassquatch.scss"
+  ],
   "keywords": [
     "meetup"
   ],
   "ignore": [
-    "**/.*",
     "node_modules",
-    "bower_components",
-    "test",
-    "tests"
+    "bower_components"
   ],
   "dependencies": {
     "sassquatch2": "^1.5.2"

@@ -1,5 +1,13 @@
 module.exports = function(grunt) {
   grunt.initConfig({
+    wiredep: {
+      sass: {
+        src: ["components/sassquatch2/sass/_util.scss"],
+        options: {
+          exclude: ['sassquatch.scss']
+        }
+      }
+    },
     sass: {
       dist: {
         options: {
@@ -7,8 +15,8 @@ module.exports = function(grunt) {
           outputStyle: 'compressed'
         },
         files: {
-          "dist/sassquatch.css": "bower_components/sassquatch2/sass/sassquatch.scss",
-          "dist/style.css": "src/style.scss"
+          'dist/sassquatch.css': 'components/sassquatch2/sass/sassquatch.scss',
+          'dist/style.css': 'src/style.scss'
         }
       }
     },
@@ -21,6 +29,7 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-wiredep');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.registerTask('default', ['watch']);
+  grunt.registerTask('default', ['wiredep', 'sass', 'watch']);
 };
