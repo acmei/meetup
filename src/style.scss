@@ -7,12 +7,27 @@ $font-stack: Helvetica, Arial, sans-serif;
 // Numbers
 $xsmall-space: 1rem;
 $small-space: 2rem;
-$max-width: 65%;
 $search-field-height: 35px;
 $search-field-width: 200px;
 $shadow-blur-radius: 20px;
 $card-height: 140px;
 $transition-time: 0.2s;
+
+// Make it responsive!
+@mixin media-query() {
+  @media only screen and (min-width : 480px) {
+    max-width: 90%;
+  }
+  @media only screen and (min-width: 768px) {
+    max-width: 75%;
+  }
+  @media only screen and (min-width: 992px) {
+    max-width: 55%;
+  }
+  @media only screen and (min-width: 1400px) {
+    max-width: 45%;
+  }
+}
 
 // Base Styling
 html, body {
@@ -22,8 +37,8 @@ html, body {
 
 // Search
 .search {
+  @include media-query
   margin: 0 auto;
-  max-width: $max-width;
   padding-top: $small-space;
   padding-left: $small-space;
 
@@ -36,9 +51,9 @@ html, body {
 
 // Events
 .events {
+  @include media-query
   border-top: none;
   margin: $small-space auto;
-  max-width: $max-width;
 
   .card {
     min-height: $card-height;

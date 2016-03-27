@@ -1,9 +1,9 @@
-#### Previewing the App
+### Previewing the App
 Open up `index.html` in your browser.
 
 ![A preview of the app](screenshot.png)
 
-#### Development Requirements
+### Development Requirements
 - Node.js (v5.4.1)
 - Bower (v1.7.7)
 
@@ -17,4 +17,8 @@ bower install
 ```shell
 # This will automatically watch for changes to 'src/style.scss'
 grunt
+
+# To compile without watching for changes
+grunt wiredep
+grunt sass
 ```
