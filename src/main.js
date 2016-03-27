@@ -3,7 +3,7 @@ $(document).ready(function($) {
   API_KEY = '6752511f3291b2b182ee4d2ef312';
 
   var $eventsSection = $('.events');
-  var zipcode = $('#search-field').val();
+  var zipcode;
 
   function renderPage(zipcode) {
     $eventsSection.empty();
@@ -46,12 +46,12 @@ $(document).ready(function($) {
     // Searching
     $('#search-field').on('keyup', function(event) {
       if (event.keyCode === 13) {
-        renderPage(zipcode);
+        renderPage($('#search-field').val());
       }
     });
 
     $('.button--primary').on('click', function() {
-      renderPage(zipcode);
+      renderPage($('#search-field').val());
     })
   }
 
