@@ -2,8 +2,9 @@
 
 #### Requirements
 - Node.js (v5.4.1)
+- Bower (v1.7.7)
 
-#### Install dependencies
+#### Install Dependencies
 ```
 npm install
 bower install
