@@ -1,6 +1,6 @@
 var MeetupApp = {
   handleFavorite: function() {
-    $('.events').on('click', '.favorite', function(event) {
+    $('.events').on('click', '.favorite', '.fa-star', function(event) {
       event.preventDefault();
       MeetupApp.favoriteEvent(event);
     });
@@ -22,7 +22,7 @@ var MeetupApp = {
     var target = event.target;
     var star = target.firstElementChild;
 
-    $(target).toggleClass('favorited');
+    $(target).closest('.favorite').toggleClass('favorited');
     $(star).addClass('animate--bounceInSubtle');
 
     setTimeout(function () {
