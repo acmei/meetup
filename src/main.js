@@ -1,12 +1,38 @@
-$(document).ready(function($) {
-  // key provided in coding challenge doc
-  var API_KEY = '6752511f3291b2b182ee4d2ef312';
+var MeetupApp = {
+  handleFavorite: function() {
+    $('.events').on('click', '.favorite', function(event) {
+      event.preventDefault();
+      MeetupApp.favoriteEvent(event);
+    });
+  },
 
-  var $searchSection = $('.search');
-  var $eventsSection = $('.events');
-  var zipcode;
+  handleSearch: function() {
+    $('#search-field').on('keyup', function(event) {
+      if (event.keyCode === 13) {
+        MeetupApp.renderEvents($('#search-field').val());
+      }
+    });
 
-  function renderSearch() {
+    $('.button--primary').on('click', function() {
+      MeetupApp.renderEvents($('#search-field').val());
+    })
+  },
+
+  favoriteEvent: function handleFavoriteEvent(event) {
+    var target = event.target;
+    var star = target.firstElementChild;
+
+    $(target).toggleClass('favorited');
+    $(star).addClass('animate--bounceInSubtle');
+
+    setTimeout(function () {
+      $(star).removeClass('animate--bounceInSubtle');
+    }, 300);
+  },
+
+  renderSearch: function() {
+    var $searchSection = $('.search');
+
     var title = $('<h2>').text('JavaScript Meetups');
 
     var inputField = $('<input>', {
@@ -22,61 +48,9 @@ $(document).ready(function($) {
     }).text('Search');
 
     return $searchSection.append([title, inputField, searchButton]);
-  }
+  },
 
-  function renderEvents(zipcode) {
-    $eventsSection.empty();
-
-    $.ajax({
-      url: 'https://api.meetup.com/2/open_events',
-      method: 'GET',
-      dataType: 'jsonp',
-      data: {
-        'key': API_KEY,
-        'page': 10,
-        'zip': zipcode || '98101',
-        'text': 'javascript',
-        'radius': 15,
-        'order': 'trending',
-        'desc': true
-      },
-    }).done(function(data) {
-      // loop through the results to display events
-      $.each(data.results, function(index, event) {
-        renderEventTemplate(index, event);
-      });
-    }).fail(function(jqXHR, textStatus, errorThrown) {
-      alert(jqXHR.status + ': ' + 'Check your request url and try again.');
-    });
-  }
-
-  function attachEventListeners() {
-    // Favoriting
-    $eventsSection.on('click', '.favorite', function() {
-      event.preventDefault();
-      var $star = $(this).find(':first-child');
-
-      $(this).toggleClass('favorited');
-      $star.addClass('animate--bounceInSubtle');
-
-      setTimeout(function () {
-        $star.removeClass('animate--bounceInSubtle');
-      }, 300);
-    });
-
-    // Searching
-    $('#search-field').on('keyup', function(event) {
-      if (event.keyCode === 13) {
-        renderEvents($('#search-field').val());
-      }
-    });
-
-    $('.button--primary').on('click', function() {
-      renderEvents($('#search-field').val());
-    })
-  }
-
-  function renderEventTemplate(index, event) {
+  renderEvent: function(index, event) {
     var eventName = event.name;
     var eventUrl = event.event_url;
     var eventTime = new Date(event.time);
@@ -84,7 +58,7 @@ $(document).ready(function($) {
     var eventYesRsvp = event.yes_rsvp_count;
     var groupName = event.group.name;
     var groupMembers = event.group.who;
-    var ableToRsvp = spotsLeftText(eventRsvpLimit, eventYesRsvp) != 'No spots left';
+    var ableToRsvp = MeetupApp.spotsLeftText(eventRsvpLimit, eventYesRsvp) != 'No spots left';
     var cardColor = ableToRsvp ? 'card--event card--event--draft' : 'card--event';
 
     // date display
@@ -94,7 +68,7 @@ $(document).ready(function($) {
 
     var eventDate = $('<p>', {
       'class': 'display--inlineBlock'
-    }).text(renderDate(eventTime));
+    }).text(MeetupApp.renderDate(eventTime));
 
     var dateTime = $('<div>', {
       'class': 'dateTime'
@@ -119,7 +93,7 @@ $(document).ready(function($) {
       append($('<p>', {
         'class': 'text--caption display--block'
       }).
-        text(spotsLeftText(eventRsvpLimit, eventYesRsvp)));
+        text(MeetupApp.spotsLeftText(eventRsvpLimit, eventYesRsvp)));
 
     // event info
     var group = $('<p>', {
@@ -143,40 +117,38 @@ $(document).ready(function($) {
       'target': '_blank'
     }).append([cardHeader, spotsLeft, eventInfo]);
 
-    return $eventsSection.append(eventCard);
-  }
+    return $('.events').append(eventCard);
+  },
 
-  function dayString(dayIndex) {
-    return [
-    "Monday", "Tuesday", "Wednesday",
-    "Thursday", "Friday", "Saturday", "Sunday"
-    ][dayIndex];
-  }
+  renderEvents: function(zipcode) {
+    $('.events').empty();
+    // key provided in coding challenge doc
+    var API_KEY = '6752511f3291b2b182ee4d2ef312';
+    var zip = zipcode || 98109;
 
-  function monthString(monthIndex) {
-    return [
-      'Jan', 'Feb', 'Mar', 'Apr',
-      'May', 'Jun', 'Jul', 'Aug',
-      'Sep', 'Oct', 'Nov', 'Dec'
-    ][monthIndex];
-  }
+    $.ajax({
+      url: 'https://api.meetup.com/2/open_events',
+      method: 'GET',
+      dataType: 'jsonp',
+      data: {
+        'key': API_KEY,
+        'page': 10,
+        'zip': zip,
+        'text': 'javascript',
+        'radius': 15,
+        'order': 'trending',
+        'desc': true
+      },
+    }).done(function(data) {
+      $.each(data.results, function(index, event) {
+        MeetupApp.renderEvent(index, event);
+      });
+    }).fail(function(jqXHR) {
+      alert(jqXHR.status + ': ' + 'Check your request url and try again.');
+    });
+  },
 
-  /**
-   * Formats datetime into the following format:
-   * Monday Jan 13, 6:30 pm
-   * @param {object} a date object
-   */
-  function renderDate(dateObject) {
-    var day = dayString(dateObject.getDay());
-    var month = monthString(dateObject.getMonth());
-    var date = dateObject.getDate() + ',';
-    var time = dateObject.toLocaleTimeString().substr(0, 4);
-    var amPm = dateObject.toLocaleTimeString().substr(8).toLowerCase();
-
-    return [day, month, date, time, amPm].join(' ');
-  }
-
-  function spotsLeftText(rsvpLimit, yesRsvp) {
+  spotsLeftText: function(rsvpLimit, yesRsvp) {
     if (rsvpLimit) {
       var spotsRemaining = rsvpLimit - yesRsvp;
 
@@ -188,10 +160,43 @@ $(document).ready(function($) {
     } else {
       return "Meetup with us!"
     }
-  }
+  },
 
-  renderSearch();
-  renderEvents();
-  attachEventListeners();
+  dayString: function(dayIndex) {
+    return [
+    "Monday", "Tuesday", "Wednesday",
+    "Thursday", "Friday", "Saturday", "Sunday"
+    ][dayIndex];
+  },
+
+  monthString: function(monthIndex) {
+    return [
+      'Jan', 'Feb', 'Mar', 'Apr',
+      'May', 'Jun', 'Jul', 'Aug',
+      'Sep', 'Oct', 'Nov', 'Dec'
+    ][monthIndex];
+  },
+
+  /**
+   * Formats datetime into the following format:
+   * Monday Jan 13, 6:30 pm
+   * @param {object} a date object
+   */
+  renderDate: function(dateObject) {
+    var day = MeetupApp.dayString(dateObject.getDay());
+    var month = MeetupApp.monthString(dateObject.getMonth());
+    var date = dateObject.getDate() + ',';
+    var time = dateObject.toLocaleTimeString().substr(0, 4);
+    var amPm = dateObject.toLocaleTimeString().substr(8).toLowerCase();
+
+    return [day, month, date, time, amPm].join(' ');
+  }
+}
+
+$(document).ready(function($) {
+  MeetupApp.renderSearch();
+  MeetupApp.renderEvents();
+  MeetupApp.handleSearch();
+  MeetupApp.handleFavorite();
 });
 
