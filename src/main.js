@@ -194,7 +194,7 @@ var MeetupApp = {
 }
 
 $(document).ready(function($) {
-  MeetupApp.renderSearch();
+  MeetupApp.renderSearchTemplate();
   MeetupApp.renderEvents();
   MeetupApp.handleSearch();
   MeetupApp.handleFavorite();
