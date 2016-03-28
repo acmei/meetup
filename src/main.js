@@ -18,7 +18,7 @@ var MeetupApp = {
     })
   },
 
-  favoriteEvent: function handleFavoriteEvent(event) {
+  favoriteEvent: function(event) {
     var target = event.target;
     var star = target.firstElementChild;
 
@@ -30,7 +30,7 @@ var MeetupApp = {
     }, 300);
   },
 
-  renderSearch: function() {
+  renderSearchTemplate: function() {
     var $searchSection = $('.search');
 
     var title = $('<h2>').text('JavaScript Meetups');
@@ -50,7 +50,7 @@ var MeetupApp = {
     return $searchSection.append([title, inputField, searchButton]);
   },
 
-  renderEvent: function(index, event) {
+  renderEventTemplate: function(index, event) {
     var eventName = event.name;
     var eventUrl = event.event_url;
     var eventTime = new Date(event.time);
@@ -58,7 +58,7 @@ var MeetupApp = {
     var eventYesRsvp = event.yes_rsvp_count;
     var groupName = event.group.name;
     var groupMembers = event.group.who;
-    var ableToRsvp = MeetupApp.spotsLeftText(eventRsvpLimit, eventYesRsvp) != 'No spots left';
+    var ableToRsvp = MeetupApp.spotsLeft(eventRsvpLimit, eventYesRsvp) != 'No spots left';
     var cardColor = ableToRsvp ? 'card--event card--event--draft' : 'card--event';
 
     // date display
@@ -68,7 +68,7 @@ var MeetupApp = {
 
     var eventDate = $('<p>', {
       'class': 'display--inlineBlock'
-    }).text(MeetupApp.renderDate(eventTime));
+    }).text(MeetupApp.eventDateTime(eventTime));
 
     var dateTime = $('<div>', {
       'class': 'dateTime'
@@ -93,7 +93,7 @@ var MeetupApp = {
       append($('<p>', {
         'class': 'text--caption display--block'
       }).
-        text(MeetupApp.spotsLeftText(eventRsvpLimit, eventYesRsvp)));
+        text(MeetupApp.spotsLeft(eventRsvpLimit, eventYesRsvp)));
 
     // event info
     var group = $('<p>', {
@@ -141,14 +141,14 @@ var MeetupApp = {
       },
     }).done(function(data) {
       $.each(data.results, function(index, event) {
-        MeetupApp.renderEvent(index, event);
+        MeetupApp.renderEventTemplate(index, event);
       });
     }).fail(function(jqXHR) {
       alert(jqXHR.status + ': ' + 'Check your request url and try again.');
     });
   },
 
-  spotsLeftText: function(rsvpLimit, yesRsvp) {
+  spotsLeft: function(rsvpLimit, yesRsvp) {
     if (rsvpLimit) {
       var spotsRemaining = rsvpLimit - yesRsvp;
 
@@ -162,14 +162,14 @@ var MeetupApp = {
     }
   },
 
-  dayString: function(dayIndex) {
+  day: function(dayIndex) {
     return [
     "Monday", "Tuesday", "Wednesday",
     "Thursday", "Friday", "Saturday", "Sunday"
     ][dayIndex];
   },
 
-  monthString: function(monthIndex) {
+  month: function(monthIndex) {
     return [
       'Jan', 'Feb', 'Mar', 'Apr',
       'May', 'Jun', 'Jul', 'Aug',
@@ -182,9 +182,9 @@ var MeetupApp = {
    * Monday Jan 13, 6:30 pm
    * @param {object} a date object
    */
-  renderDate: function(dateObject) {
-    var day = MeetupApp.dayString(dateObject.getDay());
-    var month = MeetupApp.monthString(dateObject.getMonth());
+  eventDateTime: function(dateObject) {
+    var day = MeetupApp.day(dateObject.getDay());
+    var month = MeetupApp.month(dateObject.getMonth());
     var date = dateObject.getDate() + ',';
     var time = dateObject.toLocaleTimeString().substr(0, 4);
     var amPm = dateObject.toLocaleTimeString().substr(8).toLowerCase();
